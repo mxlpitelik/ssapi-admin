@@ -26,7 +26,7 @@ angular.module('app.auth', [
             }
         },
         data: {
-            title: 'Login',
+            title: 'LoginReal',
             rootId: 'extra-page'
         }
 

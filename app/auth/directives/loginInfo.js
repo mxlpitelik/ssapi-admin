@@ -7,7 +7,8 @@ angular.module('app.auth').directive('loginInfo', function(User){
         templateUrl: 'app/auth/directives/login-info.tpl.html',
         link: function(scope, element){
             User.initialized.then(function(){
-                scope.user = User
+                scope.user = User;
+                console.log(User);
             });
         }
     }

@@ -10,11 +10,21 @@ angular.module('app.auth').factory('User', function ($http, $q, APP_CONFIG) {
         username: undefined,
         picture: undefined
     };
-     $http.get(APP_CONFIG.apiRootUrl + '/user.json').then(function(response){
-         UserModel.username = response.data.username;
-         UserModel.picture= response.data.picture;
-         dfd.resolve(UserModel)
-     });
+
+    var sData = ssapi.sessionGet();
+    if(sData) {
+        UserModel.username = sData.login;
+        UserModel.picture = undefined;
+        dfd.resolve(UserModel)
+    } else {
+        location.hash = '#/login';
+    }
+
+     // $http.get(APP_CONFIG.apiRootUrl + '/user.json').then(function(response){
+     //     UserModel.username = response.data.username;
+     //     UserModel.picture = response.data.picture;
+     //     dfd.resolve(UserModel)
+     // });
 
     return UserModel;
 });
